@@ -2,230 +2,296 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Virtual Pooja Ghar</title>
+<title>Virtual Pooja Ghar | Digital Mandir</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Virtual Pooja Ghar – Book Poojari, Pathashala, Live Aarti, Audio Library, Hindu Calendar">
+<meta name="description" content="Virtual Pooja Ghar – Book Poojari, Live Aarti, Bhakti Audio, Pathashala & Hindu Calendar">
 
 <style>
-body {
-  margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background: radial-gradient(circle at top, #2b0a3d, #050008);
-  color: #fff;
-  overflow-x: hidden;
+/* ---------- RESET ---------- */
+* { margin:0; padding:0; box-sizing:border-box; }
+
+/* ---------- BODY ---------- */
+body{
+  font-family: "Segoe UI", sans-serif;
+  background: radial-gradient(circle at top, #2b0a3d, #060009);
+  color:#fff;
+  overflow-x:hidden;
 }
 
-header {
-  text-align: center;
-  padding: 30px;
-  background: linear-gradient(90deg, #ff9933, #ffcc66, #ff9933);
-  color: #4b1a00;
-  font-size: 32px;
-  font-weight: bold;
-  letter-spacing: 2px;
+/* ---------- HERO TEMPLE ---------- */
+.hero{
+  height:100vh;
+  background:
+    linear-gradient(to bottom, rgba(0,0,0,0.3), #060009),
+    url("https://images.unsplash.com/photo-1604079628041-94301bb21b91") center/cover no-repeat;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
 }
 
-nav {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 12px;
-  background: #120018;
-  padding: 15px;
+.om{
+  font-size:96px;
+  animation:glow 3s infinite;
 }
 
-nav button {
-  background: #ff9933;
-  border: none;
-  padding: 10px 18px;
-  border-radius: 25px;
-  cursor: pointer;
-  font-weight: bold;
+@keyframes glow{
+  0%{text-shadow:0 0 10px #ff9933;}
+  50%{text-shadow:0 0 45px #ffd27d;}
+  100%{text-shadow:0 0 10px #ff9933;}
 }
 
-section {
-  display: none;
-  padding: 30px;
-  animation: fadeIn 1s ease;
+.hero h1{
+  font-size:46px;
+  color:#ffd27d;
+  margin:10px 0;
 }
 
-section.active {
-  display: block;
+.hero p{opacity:0.9;}
+
+.diya{
+  width:40px;
+  height:40px;
+  background:orange;
+  border-radius:50%;
+  margin-top:15px;
+  box-shadow:0 0 30px orange;
+  animation:flicker 1.4s infinite;
 }
 
-@keyframes fadeIn {
-  from {opacity: 0; transform: translateY(20px);}
-  to {opacity: 1; transform: translateY(0);}
+@keyframes flicker{
+  0%{opacity:.6;}
+  50%{opacity:1;}
+  100%{opacity:.6;}
 }
 
-.card {
-  background: rgba(255,255,255,0.08);
-  border-radius: 20px;
-  padding: 20px;
-  margin-bottom: 20px;
-  box-shadow: 0 0 25px rgba(255,153,51,0.4);
+/* ---------- NAV ---------- */
+nav{
+  position:sticky;
+  top:0;
+  background:#120018;
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:10px;
+  padding:12px;
+  z-index:10;
 }
 
-.shimmer {
-  animation: shimmer 2s infinite;
+nav button{
+  background:#ff9933;
+  border:none;
+  padding:10px 18px;
+  border-radius:25px;
+  font-weight:bold;
+  cursor:pointer;
 }
 
-@keyframes shimmer {
-  0% {box-shadow: 0 0 10px #ff9933;}
-  50% {box-shadow: 0 0 30px #ffd699;}
-  100% {box-shadow: 0 0 10px #ff9933;}
+/* ---------- SECTIONS ---------- */
+section{
+  display:none;
+  padding:60px 20px;
+  animation:fade 1s;
+}
+section.active{display:block;}
+
+@keyframes fade{
+  from{opacity:0; transform:translateY(25px);}
+  to{opacity:1; transform:translateY(0);}
 }
 
-.pay-btn {
-  background: #00c853;
-  border: none;
-  padding: 12px 20px;
-  border-radius: 25px;
-  font-size: 16px;
-  cursor: pointer;
-  margin: 8px 0;
+/* ---------- CARDS ---------- */
+.cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:22px;
 }
 
-.whatsapp {
-  background: #25d366;
-  padding: 12px;
-  border-radius: 25px;
-  display: inline-block;
-  color: #000;
-  text-decoration: none;
-  font-weight: bold;
+.card{
+  background:rgba(255,255,255,0.08);
+  padding:25px;
+  border-radius:20px;
+  text-align:center;
+  box-shadow:0 0 25px rgba(255,153,51,0.35);
 }
 
-iframe {
-  width: 100%;
-  height: 320px;
-  border: none;
-  border-radius: 20px;
+.card h3{color:#ffcc66; margin-bottom:8px;}
+
+/* ---------- RITUALS ---------- */
+.ritual-btn{
+  background:#ff9933;
+  border:none;
+  padding:10px 18px;
+  border-radius:25px;
+  cursor:pointer;
+  margin-top:10px;
 }
 
-footer {
-  text-align: center;
-  padding: 20px;
-  background: #120018;
-  opacity: 0.8;
+/* ---------- AARTI ---------- */
+.aarti{
+  text-align:center;
+  background:linear-gradient(to right,#120018,#2a0a3d,#120018);
+}
+
+.bell{
+  font-size:55px;
+  animation:swing 2s infinite;
+}
+
+@keyframes swing{
+  0%{transform:rotate(-10deg);}
+  50%{transform:rotate(10deg);}
+  100%{transform:rotate(-10deg);}
+}
+
+/* ---------- PAYMENT ---------- */
+.pay-btn{
+  background:#00c853;
+  border:none;
+  padding:12px 22px;
+  border-radius:25px;
+  font-size:16px;
+  margin:6px;
+  cursor:pointer;
+}
+
+.whatsapp{
+  background:#25d366;
+  padding:12px 18px;
+  border-radius:25px;
+  color:#000;
+  text-decoration:none;
+  font-weight:bold;
+  display:inline-block;
+}
+
+/* ---------- AUDIO ---------- */
+audio{width:100%; margin-top:8px;}
+
+/* ---------- FOOTER ---------- */
+footer{
+  text-align:center;
+  padding:20px;
+  background:#120018;
+  opacity:.85;
 }
 </style>
 </head>
 
 <body>
 
-<!-- OM SOUND -->
-<audio id="omSound" autoplay>
+<!-- AUTO OM (browser may require interaction) -->
+<audio id="omAudio">
   <source src="om.mp3" type="audio/mpeg">
 </audio>
 
-<header>🕉️ Virtual Pooja Ghar</header>
+<!-- HERO -->
+<div class="hero" onclick="playOm()">
+  <div class="om">🕉️</div>
+  <h1>Virtual Pooja Ghar</h1>
+  <p>Digital Mandir for Daily Bhakti & Rituals</p>
+  <div class="diya"></div>
+</div>
 
 <nav>
-  <button onclick="show('home')">Home</button>
-  <button onclick="show('poojari')">Book Poojari</button>
-  <button onclick="show('pathashala')">Pathashala</button>
-  <button onclick="show('audio')">Audio Library</button>
-  <button onclick="show('calendar')">Hindu Calendar</button>
-  <button onclick="show('donate')">Donate</button>
+  <button onclick="openTab('home')">Home</button>
+  <button onclick="openTab('rituals')">Rituals</button>
+  <button onclick="openTab('poojari')">Poojari</button>
+  <button onclick="openTab('pathashala')">Pathashala</button>
+  <button onclick="openTab('audio')">Audio</button>
+  <button onclick="openTab('calendar')">Calendar</button>
+  <button onclick="openTab('donate')">Donate</button>
 </nav>
 
-<!-- HOME -->
 <section id="home" class="active">
-  <div class="card shimmer">
-    <h2>🙏 Welcome to Virtual Pooja Ghar</h2>
-    <p>Experience divine rituals, live aarti, mantras, and virtual pooja services from anywhere.</p>
-    <p><b>Languages:</b> Telugu | Tamil | Kannada | Malayalam | Hindi | English</p>
+  <h2>🪔 Temple Experience</h2>
+  <div class="cards">
+    <div class="card">
+      <h3>Ring Bell</h3>
+      <button class="ritual-btn" onclick="ringBell()">🔔 Ring</button>
+    </div>
+    <div class="card">
+      <h3>Light Diya</h3>
+      <p>Invoke divine light</p>
+    </div>
+    <div class="card">
+      <h3>Offer Flowers</h3>
+      <p>Submit prayers digitally</p>
+    </div>
   </div>
 </section>
 
-<!-- POOJARI -->
+<section id="rituals" class="aarti">
+  <div class="bell">🔔</div>
+  <h2>Live Aarti Feeling</h2>
+  <p>Light • Sound • Devotion</p>
+</section>
+
 <section id="poojari">
-  <div class="card">
-    <h2>🧘 Book Virtual Poojari</h2>
-    <ul>
-      <li>🔸 Pandit Ravi – 15 yrs – Telugu / Hindi</li>
-      <li>🔸 Pandit Sharma – 20 yrs – Sanskrit / Hindi</li>
-      <li>🔸 Pandit Iyer – 18 yrs – Tamil / Sanskrit</li>
-    </ul>
-    <a class="whatsapp" href="https://wa.me/917981225876?text=I want to book a virtual poojari">Book via WhatsApp</a>
+  <h2>📿 Virtual Poojari Booking</h2>
+  <div class="cards">
+    <div class="card">Pandit Ravi<br>15 yrs<br>Telugu / Hindi</div>
+    <div class="card">Pandit Sharma<br>20 yrs<br>Sanskrit / Hindi</div>
+    <div class="card">Pandit Iyer<br>18 yrs<br>Tamil / Sanskrit</div>
   </div>
+  <br>
+  <a class="whatsapp" href="https://wa.me/917981225876?text=I want to book a virtual poojari">Book via WhatsApp</a>
 </section>
 
-<!-- PATHASHALA -->
 <section id="pathashala">
-  <div class="card">
-    <h2>📿 Virtual Pathashala</h2>
-    <p>Learn Vedas, Slokas, Ramayanam, Bhagavad Gita</p>
-    <ul>
-      <li>Daily chanting classes</li>
-      <li>Kids & adults batches</li>
-      <li>Multi-language support</li>
-    </ul>
+  <h2>📖 Virtual Pathashala</h2>
+  <div class="cards">
+    <div class="card">Vedas & Slokas</div>
+    <div class="card">Ramayanam</div>
+    <div class="card">Bhagavad Gita</div>
+    <div class="card">Hanuman Chalisa Learning</div>
   </div>
 </section>
 
-<!-- AUDIO -->
 <section id="audio">
+  <h2>🎵 Bhakti Audio Library</h2>
   <div class="card">
-    <h2>🎵 Divine Audio Library</h2>
-
     <h3>Om Chant</h3>
-    <audio controls>
-      <source src="om.mp3" type="audio/mpeg">
-    </audio>
-
+    <audio controls><source src="om.mp3"></audio>
     <h3>Hanuman Chalisa</h3>
-    <audio controls>
-      <source src="hanuman.mp3" type="audio/mpeg">
-    </audio>
+    <audio controls><source src="hanuman.mp3"></audio>
   </div>
 </section>
 
-<!-- CALENDAR -->
 <section id="calendar">
-  <div class="card">
-    <h2>📅 Hindu Calendar & Muhurtham</h2>
-    <iframe src="https://www.drikpanchang.com/calendars/hindu/hindu-calendar.html"></iframe>
-    <p>Includes Tithi, Nakshatra, Rahu Kalam, Vastu Muhurtham</p>
-  </div>
+  <h2>📅 Hindu Calendar & Muhurtham</h2>
+  <iframe src="https://www.drikpanchang.com/calendars/hindu/hindu-calendar.html"
+    style="width:100%;height:360px;border:none;border-radius:20px;"></iframe>
 </section>
 
-<!-- DONATE -->
 <section id="donate">
-  <div class="card shimmer">
-    <h2>💳 Dakshina / Donation</h2>
-
-    <a href="upi://pay?pa=7981225876-3@ybl&pn=VirtualPoojaGhar&am=51&cu=INR">
-      <button class="pay-btn">₹51 Aarti</button>
-    </a>
-
-    <a href="upi://pay?pa=7981225876-3@ybl&pn=VirtualPoojaGhar&am=101&cu=INR">
-      <button class="pay-btn">₹101 Pooja</button>
-    </a>
-
-    <a href="upi://pay?pa=7981225876-3@ybl&pn=VirtualPoojaGhar&am=251&cu=INR">
-      <button class="pay-btn">₹251 Special</button>
-    </a>
-
-    <h3>📱 Scan QR (Desktop Users)</h3>
-    <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=upi://pay?pa=7981225876-3@ybl&pn=VirtualPoojaGhar" />
-
-    <br><br>
-    <a class="whatsapp" href="https://wa.me/917981225876?text=I have completed the payment">
-      Confirm Payment on WhatsApp
-    </a>
-  </div>
+  <h2>💳 Offer Dakshina</h2>
+  <a href="upi://pay?pa=7981225876-3@ybl&pn=VirtualPoojaGhar&am=101&cu=INR">
+    <button class="pay-btn">₹101 Pooja</button>
+  </a>
+  <br><br>
+  <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=upi://pay?pa=7981225876-3@ybl&pn=VirtualPoojaGhar">
+  <br><br>
+  <a class="whatsapp" href="https://wa.me/917981225876?text=I have completed the payment">
+    Confirm on WhatsApp
+  </a>
 </section>
 
 <footer>
-  © 2026 Virtual Pooja Ghar | Divine Digital Temple 🕉️
+  © 2026 Virtual Pooja Ghar • Devotion Without Distance 🕉️
 </footer>
 
 <script>
-function show(id) {
-  document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
+function openTab(id){
+  document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+}
+function playOm(){
+  document.getElementById("omAudio").play();
+}
+function ringBell(){
+  new Audio("om.mp3").play();
 }
 </script>
 
