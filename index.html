@@ -2,231 +2,232 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<title>Virtual Pooja Ghar</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pooja Ghar | Online Pooja & Devotional Library</title>
-<meta name="description" content="Book Pooja, Pandit, Pathashala & Virtual Rituals online. Listen to OM, Hanuman Chalisa, Ramayana & more. Pay via PhonePe, GPay & Paytm.">
-<meta name="keywords" content="online pooja booking, devotional audio, hanuman chalisa, ramayana, temple services">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+<meta name="description" content="Virtual Pooja Ghar – Book Poojari, Pathashala, Live Aarti, Audio Library, Hindu Calendar">
+
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
-body{min-height:100vh;background:linear-gradient(-45deg,#2b1055,#7597de,#1b5e20,#ff6f00);background-size:400% 400%;animation:bgMove 15s ease infinite;color:#fff;overflow-x:hidden;}
-@keyframes bgMove{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%;}}
-.overlay{background:rgba(0,0,0,0.65);min-height:100vh;padding:30px;position:relative;}
-.hero{text-align:center;padding-top:60px;animation:fadeIn 2s ease;}
-@keyframes fadeIn{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
-.hero h1{font-size:3rem;text-shadow:0 0 20px gold;}
-.hero p{font-size:1.2rem;margin:15px auto;max-width:700px;}
-.lang{margin-top:10px;opacity:0.9;}
-.enter-btn{margin-top:30px;padding:15px 35px;background:gold;border:none;border-radius:30px;font-size:1.1rem;cursor:pointer;box-shadow:0 0 20px gold;animation:pulse 2s infinite;}
-@keyframes pulse{0%{box-shadow:0 0 10px gold}50%{box-shadow:0 0 30px gold}100%{box-shadow:0 0 10px gold;}}
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: radial-gradient(circle at top, #2b0a3d, #050008);
+  color: #fff;
+  overflow-x: hidden;
+}
 
-.section{margin-top:80px;text-align:center;}
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:25px;margin-top:40px;}
-.card{background:rgba(255,255,255,0.1);padding:25px;border-radius:20px;backdrop-filter:blur(8px);transition:0.4s;}
-.card:hover{transform:translateY(-10px);box-shadow:0 0 25px rgba(255,215,0,0.6);}
+header {
+  text-align: center;
+  padding: 30px;
+  background: linear-gradient(90deg, #ff9933, #ffcc66, #ff9933);
+  color: #4b1a00;
+  font-size: 32px;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
 
-.buttons{margin-top:40px;}
-.btn{display:inline-block;margin:10px;padding:15px 25px;border-radius:30px;text-decoration:none;font-weight:600;}
-.whatsapp{background:#25D366;color:#fff;}
-.phonepe{background:#6739b7;color:#fff;}
-.gpay{background:#fff;color:#000;}
-.paytm{background:#00baf2;color:#fff;}
+nav {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  background: #120018;
+  padding: 15px;
+}
 
-form{background:rgba(255,255,255,0.1);padding:25px;border-radius:20px;max-width:500px;margin:40px auto;backdrop-filter:blur(8px);}
-form input, form select{width:100%;padding:12px;margin:10px 0;border-radius:10px;border:none;}
-form button{background:gold;color:#000;padding:12px 25px;border:none;border-radius:30px;font-weight:600;cursor:pointer;box-shadow:0 0 15px gold;}
-form button:hover{box-shadow:0 0 30px gold;transform:scale(1.05);}
+nav button {
+  background: #ff9933;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: bold;
+}
 
-.shimmer {font-size:1.5rem;margin-top:30px;font-weight:bold;background: linear-gradient(90deg, #fff 25%, #ffd700 50%, #fff 75%);background-size:200% 100%;-webkit-background-clip: text;-webkit-text-fill-color: transparent;animation: shimmer 2s infinite;}
-@keyframes shimmer {0%{background-position:-200% 0;}100%{background-position:200% 0;}}
+section {
+  display: none;
+  padding: 30px;
+  animation: fadeIn 1s ease;
+}
 
-.temple{font-size:5rem;animation:float 3s ease-in-out infinite;}
-@keyframes float{0%{transform:translateY(0);}50%{transform:translateY(-15px);}100%{transform:translateY(0);}}
+section.active {
+  display: block;
+}
 
-.footer{margin-top:80px;text-align:center;font-size:0.9rem;opacity:0.8;}
+@keyframes fadeIn {
+  from {opacity: 0; transform: translateY(20px);}
+  to {opacity: 1; transform: translateY(0);}
+}
 
-.audio-library{margin-top:80px;text-align:center;}
-.audio-tabs{display:flex;justify-content:center;flex-wrap:wrap;gap:15px;margin-bottom:30px;}
-.audio-tab{padding:12px 25px;border-radius:30px;background:gold;color:#000;font-weight:600;cursor:pointer;transition:0.3s;}
-.audio-tab.active{box-shadow:0 0 25px gold;}
-.audio-card{background:rgba(255,255,255,0.1);padding:25px;border-radius:20px;backdrop-filter:blur(8px);max-width:500px;margin:0 auto;display:none;text-align:center;}
-.audio-card audio{width:100%;margin-top:15px;}
+.card {
+  background: rgba(255,255,255,0.08);
+  border-radius: 20px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 0 25px rgba(255,153,51,0.4);
+}
 
-@media(max-width:600px){.hero h1{font-size:2rem;}.cards{grid-template-columns:1fr;}.audio-tabs{flex-direction:column;}.audio-tab{width:100%;text-align:center;}}
+.shimmer {
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% {box-shadow: 0 0 10px #ff9933;}
+  50% {box-shadow: 0 0 30px #ffd699;}
+  100% {box-shadow: 0 0 10px #ff9933;}
+}
+
+.pay-btn {
+  background: #00c853;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 25px;
+  font-size: 16px;
+  cursor: pointer;
+  margin: 8px 0;
+}
+
+.whatsapp {
+  background: #25d366;
+  padding: 12px;
+  border-radius: 25px;
+  display: inline-block;
+  color: #000;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+iframe {
+  width: 100%;
+  height: 320px;
+  border: none;
+  border-radius: 20px;
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  background: #120018;
+  opacity: 0.8;
+}
 </style>
 </head>
+
 <body>
 
-<div class="overlay">
-  <div class="hero">
-    <div class="temple">🛕</div>
-    <h1 id="title">Pooja Ghar</h1>
-    <p id="desc">Book Pandit • Pathashala • Virtual & Home Pooja Services</p>
-    <div class="lang">
-      <select id="language" onchange="switchLanguage()">
-        <option value="en">English</option>
-        <option value="hi">हिंदी</option>
-        <option value="te">తెలుగు</option>
-        <option value="ta">தமிழ்</option>
-        <option value="kn">ಕನ್ನಡ</option>
-        <option value="ml">മലയാളം</option>
-      </select>
-    </div>
-    <button class="enter-btn" onclick="playOm()">Enter Divine Space</button>
-  </div>
-
-  <div class="section">
-    <h2 id="services-title">Our Sacred Services</h2>
-    <div class="cards">
-      <div class="card" id="card1">🙏 Online & Home Pooja Booking</div>
-      <div class="card" id="card2">🧘 Certified Pandits & Acharyas</div>
-      <div class="card" id="card3">📿 Vedic Pathashala Classes</div>
-      <div class="card" id="card4">💻 Virtual Live Pooja</div>
-    </div>
-  </div>
-
-  <div class="section">
-    <h2 id="form-title">Book Your Pooja</h2>
-    <form id="bookingForm">
-      <input type="text" placeholder="Full Name" required>
-      <input type="email" placeholder="Email" required>
-      <input type="tel" placeholder="Phone Number" required>
-      <input type="date" required>
-      <select required>
-        <option value="">Select Pooja Type</option>
-        <option value="home">Home Pooja</option>
-        <option value="virtual">Virtual Live Pooja</option>
-        <option value="pathashala">Pathashala Class</option>
-      </select>
-      <select required>
-        <option value="">Customer Segment</option>
-        <option value="individual">Individual</option>
-        <option value="family">Family</option>
-        <option value="organization">Organization</option>
-        <option value="school">School</option>
-        <option value="temple">Temple</option>
-      </select>
-      <button type="submit">Book via WhatsApp</button>
-    </form>
-  </div>
-
-  <div class="shimmer">📞 Customer Enquiry: +91 7981225876</div>
-
-  <div class="section">
-    <h2 id="offer-title">Make an Offering (UPI)</h2>
-    <div class="buttons">
-      <a class="btn phonepe" href="upi://pay?pa=yourupi@bank&pn=PoojaGhar">PhonePe</a>
-      <a class="btn gpay" href="upi://pay?pa=yourupi@bank&pn=PoojaGhar">GPay</a>
-      <a class="btn paytm" href="upi://pay?pa=yourupi@bank&pn=PoojaGhar">Paytm</a>
-      <a class="btn whatsapp" href="https://wa.me/917981225876" target="_blank">WhatsApp Booking</a>
-    </div>
-  </div>
-
-  <div class="audio-library">
-    <h2>Devotional Audio Library</h2>
-    <div class="audio-tabs">
-      <div class="audio-tab active" onclick="showAudio('om',event)">OM Chanting</div>
-      <div class="audio-tab" onclick="showAudio('hanuman',event)">Hanuman Chalisa</div>
-      <div class="audio-tab" onclick="showAudio('ramayana',event)">Ramayana</div>
-    </div>
-    <div id="om" class="audio-card" style="display:block;">
-      <h3>OM Chanting</h3>
-      <audio controls loop>
-        <source src="https://www.soundjay.com/human/om-chanting-01.mp3" type="audio/mpeg">
-      </audio>
-    </div>
-    <div id="hanuman" class="audio-card">
-      <h3>Hanuman Chalisa</h3>
-      <audio controls loop>
-        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
-      </audio>
-    </div>
-    <div id="ramayana" class="audio-card">
-      <h3>Ramayana Recitation</h3>
-      <audio controls loop>
-        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" type="audio/mpeg">
-      </audio>
-    </div>
-  </div>
-
-  <div class="footer" id="footer-text">© 2026 Pooja Ghar | Bringing Devotion Online</div>
-
-</div>
-
-<!-- Background Sounds -->
-<audio id="omSound" loop>
-  <source src="https://www.soundjay.com/human/om-chanting-01.mp3" type="audio/mpeg">
+<!-- OM SOUND -->
+<audio id="omSound" autoplay>
+  <source src="om.mp3" type="audio/mpeg">
 </audio>
-<audio id="bellSound">
-  <source src="https://www.soundjay.com/nature/bell-ringing-01.mp3" type="audio/mpeg">
-</audio>
+
+<header>🕉️ Virtual Pooja Ghar</header>
+
+<nav>
+  <button onclick="show('home')">Home</button>
+  <button onclick="show('poojari')">Book Poojari</button>
+  <button onclick="show('pathashala')">Pathashala</button>
+  <button onclick="show('audio')">Audio Library</button>
+  <button onclick="show('calendar')">Hindu Calendar</button>
+  <button onclick="show('donate')">Donate</button>
+</nav>
+
+<!-- HOME -->
+<section id="home" class="active">
+  <div class="card shimmer">
+    <h2>🙏 Welcome to Virtual Pooja Ghar</h2>
+    <p>Experience divine rituals, live aarti, mantras, and virtual pooja services from anywhere.</p>
+    <p><b>Languages:</b> Telugu | Tamil | Kannada | Malayalam | Hindi | English</p>
+  </div>
+</section>
+
+<!-- POOJARI -->
+<section id="poojari">
+  <div class="card">
+    <h2>🧘 Book Virtual Poojari</h2>
+    <ul>
+      <li>🔸 Pandit Ravi – 15 yrs – Telugu / Hindi</li>
+      <li>🔸 Pandit Sharma – 20 yrs – Sanskrit / Hindi</li>
+      <li>🔸 Pandit Iyer – 18 yrs – Tamil / Sanskrit</li>
+    </ul>
+    <a class="whatsapp" href="https://wa.me/917981225876?text=I want to book a virtual poojari">Book via WhatsApp</a>
+  </div>
+</section>
+
+<!-- PATHASHALA -->
+<section id="pathashala">
+  <div class="card">
+    <h2>📿 Virtual Pathashala</h2>
+    <p>Learn Vedas, Slokas, Ramayanam, Bhagavad Gita</p>
+    <ul>
+      <li>Daily chanting classes</li>
+      <li>Kids & adults batches</li>
+      <li>Multi-language support</li>
+    </ul>
+  </div>
+</section>
+
+<!-- AUDIO -->
+<section id="audio">
+  <div class="card">
+    <h2>🎵 Divine Audio Library</h2>
+
+    <h3>Om Chant</h3>
+    <audio controls>
+      <source src="om.mp3" type="audio/mpeg">
+    </audio>
+
+    <h3>Hanuman Chalisa</h3>
+    <audio controls>
+      <source src="hanuman.mp3" type="audio/mpeg">
+    </audio>
+  </div>
+</section>
+
+<!-- CALENDAR -->
+<section id="calendar">
+  <div class="card">
+    <h2>📅 Hindu Calendar & Muhurtham</h2>
+    <iframe src="https://www.drikpanchang.com/calendars/hindu/hindu-calendar.html"></iframe>
+    <p>Includes Tithi, Nakshatra, Rahu Kalam, Vastu Muhurtham</p>
+  </div>
+</section>
+
+<!-- DONATE -->
+<section id="donate">
+  <div class="card shimmer">
+    <h2>💳 Dakshina / Donation</h2>
+
+    <a href="upi://pay?pa=7981225876-3@ybl&pn=VirtualPoojaGhar&am=51&cu=INR">
+      <button class="pay-btn">₹51 Aarti</button>
+    </a>
+
+    <a href="upi://pay?pa=7981225876-3@ybl&pn=VirtualPoojaGhar&am=101&cu=INR">
+      <button class="pay-btn">₹101 Pooja</button>
+    </a>
+
+    <a href="upi://pay?pa=7981225876-3@ybl&pn=VirtualPoojaGhar&am=251&cu=INR">
+      <button class="pay-btn">₹251 Special</button>
+    </a>
+
+    <h3>📱 Scan QR (Desktop Users)</h3>
+    <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=upi://pay?pa=7981225876-3@ybl&pn=VirtualPoojaGhar" />
+
+    <br><br>
+    <a class="whatsapp" href="https://wa.me/917981225876?text=I have completed the payment">
+      Confirm Payment on WhatsApp
+    </a>
+  </div>
+</section>
+
+<footer>
+  © 2026 Virtual Pooja Ghar | Divine Digital Temple 🕉️
+</footer>
 
 <script>
-// --- MULTI-LANGUAGE CONTENT ---
-const content={
-en:{title:"Pooja Ghar",desc:"Book Pandit • Pathashala • Virtual & Home Pooja Services",servicesTitle:"Our Sacred Services",cards:["🙏 Online & Home Pooja Booking","🧘 Certified Pandits & Acharyas","📿 Vedic Pathashala Classes","💻 Virtual Live Pooja"],formTitle:"Book Your Pooja",offerTitle:"Make an Offering (UPI)",footer:"© 2026 Pooja Ghar | Bringing Devotion Online",audioLibraryTitle:"Devotional Audio Library",audioCards:["OM Chanting","Hanuman Chalisa","Ramayana"]},
-hi:{title:"पूजा घर",desc:"पंडित • पाठशाला • वर्चुअल और होम पूजा सेवाएँ बुक करें",servicesTitle:"हमारी पवित्र सेवाएँ",cards:["🙏 ऑनलाइन और होम पूजा बुकिंग","🧘 प्रमाणित पंडित और आचार्य","📿 वैदिक पाठशाला कक्षाएँ","💻 वर्चुअल लाइव पूजा"],formTitle:"अपनी पूजा बुक करें",offerTitle:"दान करें (UPI)",footer:"© 2026 पूजा घर | ऑनलाइन भक्ति",audioLibraryTitle:"धार्मिक ऑडियो लाइब्रेरी",audioCards:["ॐ मंत्र","हनुमान चालीसा","रामायण"]},
-te:{title:"పూజా ఘర్",desc:"పండిట్ • పాఠశాల • వర్చువల్ & హోమ్ పూజ సేవలు బుక్ చేయండి",servicesTitle:"మా పవిత్ర సేవలు",cards:["🙏 ఆన్లైన్ & హోమ్ పూజ బుకింగ్","🧘 సర్టిఫైడ్ పండిట్స్ & ఆచార్యలు","📿 వేద పాఠశాల క్లాసులు","💻 వర్చువల్ లైవ్ పూజ"],formTitle:"మీ పూజ బుక్ చేసుకోండి",offerTitle:"దానం చేయండి (UPI)",footer:"© 2026 పూజా ఘర్ | ఆన్‌లైన్ భక్తి",audioLibraryTitle:"భక్తి ఆడియో లైబ్రరీ",audioCards:["ఓం మంత్రం","హనుమాన్ చలీసా","రామాయణం"]}
-};
-
-function switchLanguage(){
-  let l=document.getElementById("language").value;
-  document.getElementById("title").innerText=content[l].title;
-  document.getElementById("desc").innerText=content[l].desc;
-  document.getElementById("services-title").innerText=content[l].servicesTitle;
-  document.getElementById("card1").innerText=content[l].cards[0];
-  document.getElementById("card2").innerText=content[l].cards[1];
-  document.getElementById("card3").innerText=content[l].cards[2];
-  document.getElementById("card4").innerText=content[l].cards[3];
-  document.getElementById("form-title").innerText=content[l].formTitle;
-  document.getElementById("offer-title").innerText=content[l].offerTitle;
-  document.getElementById("footer-text").innerText=content[l].footer;
-  document.querySelector(".audio-library h2").innerText=content[l].audioLibraryTitle;
-  document.getElementById("om").querySelector("h3").innerText=content[l].audioCards[0];
-  document.getElementById("hanuman").querySelector("h3").innerText=content[l].audioCards[1];
-  document.getElementById("ramayana").querySelector("h3").innerText=content[l].audioCards[2];
-  const tabs=document.querySelectorAll(".audio-tab");
-  tabs[0].innerText=content[l].audioCards[0];
-  tabs[1].innerText=content[l].audioCards[1];
-  tabs[2].innerText=content[l].audioCards[2];
+function show(id) {
+  document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
 }
+</script>
 
-// --- BOOKING FORM WHATSAPP ---
-document.getElementById("bookingForm").addEventListener("submit",function(e){
-  e.preventDefault();
-  const f=this;
-  const name=f[0].value,email=f[1].value,phone=f[2].value,date=f[3].value,pooja=f[4].value,segment=f[5].value;
-  const msg=`Hello, I want to book a pooja.\nName: ${name}\nEmail: ${email}\nPhone: ${phone}\nDate: ${date}\nPooja Type: ${pooja}\nCustomer Segment: ${segment}`;
-  const waLink=`https://wa.me/917981225876?text=${encodeURIComponent(msg)}`;
-  window.open(waLink,"_blank");
-  f.reset();
-});
-
-// --- AUDIO CONTROL ---
-const bgOm=document.getElementById("omSound");
-const bell=document.getElementById("bellSound");
-bgOm.volume=0.2;bell.volume=0.1;
-bgOm.play().catch(()=>document.body.addEventListener("click",()=>bgOm.play(),{once:true}));
-bell.play().catch(()=>document.body.addEventListener("click",()=>bell.play(),{once:true}));
-
-const audios={om:document.querySelector("#om audio"),hanuman:document.querySelector("#hanuman audio"),ramayana:document.querySelector("#ramayana audio")};
-Object.values(audios).forEach(audio=>{
-  audio.addEventListener("play",()=>{
-    Object.values(audios).forEach(a=>{if(a!==audio)a.pause();});
-    bgOm.pause();
-  });
-  audio.addEventListener("pause",()=>{
-    if(Object.values(audios).every(a=>a.paused)) bgOm.play();
-  });
-});
-
-// --- AUDIO TAB SWITCH ---
-function showAudio(id,event){
-  document.querySelectorAll('.audio-card').forEach(c=>c.style.display='none');
-  document.getElementById(id).style.display='block';
-  audios[id].play();
-  document.querySelectorAll('.audio-tab').forEach(t=>t.classList.remove('active'));
-  if(event) event.currentTarget.classList.add('active');
-}
-
-// --- PLAY OM BUTTON ---
+</body>
+</html>
