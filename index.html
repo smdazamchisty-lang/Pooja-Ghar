@@ -3,240 +3,232 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Virtual Pooja Ghar | Digital Mandir</title>
+    <title>Pooja Ghar | Divine Vastu Sanctum</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@300;400;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Outfit:wght@200;400;600&display=swap');
         
-        body { font-family: 'Poppins', sans-serif; background-color: #060009; color: white; scroll-behavior: smooth; }
-        h1, h2, h3, .om-font { font-family: 'Cinzel', serif; }
+        :root { --gold: #D4AF37; --dark: #020202; }
+        body { font-family: 'Outfit', sans-serif; background-color: var(--dark); color: #F8F1E5; scroll-behavior: smooth; overflow-x: hidden; }
+        h1, h2, .font-ritual { font-family: 'Cinzel Decorative', cursive; }
 
-        .glass { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }
-        
-        .glow-text { animation: glow 3s infinite ease-in-out; }
-        @keyframes glow {
-            0%, 100% { text-shadow: 0 0 10px #ff9933; opacity: 0.8; }
-            50% { text-shadow: 0 0 30px #ffd27d; opacity: 1; }
-        }
-
-        .diya-flame {
-            width: 18px; height: 28px; background: linear-gradient(to top, #ff9933, #fff200); 
-            border-radius: 50% 50% 20% 20%; filter: blur(1px); animation: flicker 0.1s infinite alternate;
-        }
-        @keyframes flicker {
-            from { transform: scale(1) rotate(-2deg); opacity: 0.9; }
-            to { transform: scale(1.1) rotate(2deg); opacity: 1; }
+        .premium-glass {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(25px);
+            border: 1px solid rgba(212, 175, 55, 0.1);
         }
 
-        .swing { animation: swing 0.8s ease-in-out; transform-origin: top center; }
-        @keyframes swing {
-            0% { transform: rotate(0deg); }
-            20% { transform: rotate(15deg); }
-            40% { transform: rotate(-12deg); }
-            60% { transform: rotate(8deg); }
-            80% { transform: rotate(-4deg); }
-            100% { transform: rotate(0deg); }
+        .gold-gradient {
+            background: linear-gradient(135deg, #D4AF37 0%, #F1D37E 50%, #B8962D 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
+
+        /* Vastu Compass Animation */
+        .compass-ring {
+            border: 2px solid rgba(212, 175, 55, 0.2);
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.1);
+            transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glow-line {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            width: 100%;
+            opacity: 0.3;
+        }
+
+        @keyframes pulse-gold {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+        .pulse { animation: pulse-gold 3s infinite; }
     </style>
 </head>
-<body x-data="{ 
-    section: 'home', 
-    bellRinging: false,
-    audioPlaying: false,
-    playBell() {
-        this.bellRinging = true;
-        let bell = new Audio('https://www.soundjay.com/buttons/sounds/bell-ringing-05.mp3');
-        bell.volume = 0.5;
-        bell.play();
-        setTimeout(() => this.bellRinging = false, 800);
-    },
-    toggleOm() {
-        let om = document.getElementById('bg-om');
-        if (this.audioPlaying) { om.pause(); } else { om.play(); }
-        this.audioPlaying = !this.audioPlaying;
-    }
-}">
+<body x-data="sanctumHandler()" x-init="updateTime()">
 
-    <audio id="bg-om" loop src="https://www.meditation-music.org/mp3/OM-Chant.mp3"></audio>
+    <audio id="bellSnd" src="https://assets.mixkit.co/active_storage/sfx/2043/2043-preview.mp3" preload="auto"></audio>
+    <audio id="ambientChant" loop src="https://ia801308.us.archive.org/28/items/OmChanting/OmChanting108Times.mp3"></audio>
 
-    <div class="relative h-screen flex flex-col items-center justify-center text-center bg-[url('https://images.unsplash.com/photo-1604079628041-94301bb21b91')] bg-cover bg-center">
-        <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-black/80 to-[#060009]"></div>
-        
-        <div class="relative z-10 space-y-4 px-4">
-            <div class="text-8xl glow-text mb-4 select-none">🕉️</div>
-            <h1 class="text-5xl md:text-7xl font-bold text-orange-300 drop-shadow-2xl">Virtual Pooja Ghar</h1>
-            <p class="text-lg md:text-xl text-gray-300 italic tracking-[0.2em]">Devotion Without Distance</p>
-            
-            <div class="flex flex-col items-center gap-2 py-6">
-                <div class="diya-flame shadow-[0_0_20px_orange]"></div>
-                <div class="w-12 h-5 bg-orange-900 rounded-full shadow-inner border border-orange-700/30"></div>
-            </div>
-
-            <div class="flex flex-wrap justify-center gap-4 mt-6">
-                <button @click="toggleOm()" class="px-8 py-3 glass hover:bg-white/10 text-orange-200 font-semibold rounded-full flex items-center gap-2 transition-all">
-                    <i :data-lucide="audioPlaying ? 'pause-circle' : 'play-circle'"></i>
-                    <span x-text="audioPlaying ? 'Stop Om Chant' : 'Start Om Chant'"></span>
-                </button>
-                <button @click="document.getElementById('nav').scrollIntoView()" class="px-10 py-3 bg-orange-500 hover:bg-orange-600 text-black font-bold rounded-full shadow-lg shadow-orange-500/20 transition-all">
-                    Enter Mandir
-                </button>
-            </div>
-        </div>
+    <div x-show="!entered" class="fixed inset-0 z-[100] bg-black flex flex-col items-center justify-center text-center p-6">
+        <div class="mb-8 text-8xl gold-gradient animate-pulse">🕉️</div>
+        <h1 class="text-6xl md:text-8xl font-bold gold-gradient mb-4">Pooja Ghar</h1>
+        <p class="text-gold tracking-[0.6em] mb-12 opacity-60 text-sm">ETERNAL • RADIANT • SACRED</p>
+        <button @click="enterSanctum()" class="group relative px-16 py-6 overflow-hidden border border-gold/30 rounded-full transition-all duration-700">
+            <span class="relative z-10 text-gold text-xl tracking-widest font-light group-hover:text-black transition-colors">INITIATE CONNECTION</span>
+            <div class="absolute inset-0 bg-gold translate-y-full group-hover:translate-y-0 transition-transform duration-500"></div>
+        </button>
     </div>
 
-    <nav id="nav" class="sticky top-0 z-50 glass border-b border-orange-500/20 px-4 py-3">
-        <div class="max-w-6xl mx-auto flex flex-wrap justify-center gap-2 md:gap-4">
-            <template x-for="item in ['home', 'rituals', 'poojari', 'pathashala', 'audio', 'calendar', 'donate']">
-                <button 
-                    @click="section = item"
-                    :class="section === item ? 'bg-orange-500 text-black scale-105 shadow-md shadow-orange-500/30' : 'text-orange-200 hover:bg-white/10'"
-                    class="px-5 py-2 rounded-full text-xs md:text-sm font-bold uppercase transition-all"
-                    x-text="item">
-                </button>
-            </template>
-        </div>
-    </nav>
-
-    <main class="max-w-6xl mx-auto p-6 md:p-12 min-h-screen">
+    <div x-show="entered" x-transition.opacity.duration.1500ms>
         
-        <section x-show="section === 'home'" x-transition:enter class="space-y-8">
-            <h2 class="text-4xl text-orange-300 text-center mb-12">Temple Experience</h2>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="glass p-10 rounded-3xl text-center group cursor-pointer border border-orange-500/10 hover:border-orange-500/50 transition-all" @click="playBell()">
-                    <div :class="bellRinging ? 'swing' : ''" class="inline-block mb-4 text-orange-400">
-                        <i data-lucide="bell" class="w-20 h-20"></i>
+        <header class="relative h-screen flex flex-col items-center justify-center text-center">
+            <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1545063914-a1a6ec821c88?q=80&w=2000')] bg-cover bg-center opacity-20"></div>
+            
+            <div class="relative z-10 space-y-6">
+                <h1 class="text-7xl md:text-9xl font-bold gold-gradient drop-shadow-2xl">Pooja Ghar</h1>
+                
+                <div class="premium-glass px-8 py-4 rounded-full inline-flex items-center gap-6 mt-10">
+                    <div class="text-left">
+                        <p class="text-[10px] text-gold uppercase tracking-[0.3em]">Current Muhurtham</p>
+                        <p class="text-2xl font-light tracking-widest" x-text="currentTime"></p>
                     </div>
-                    <h3 class="text-2xl font-bold mb-2">Ring Bell</h3>
-                    <p class="text-gray-400">Tap to hear the temple chime</p>
+                    <div class="h-10 w-px bg-gold/20"></div>
+                    <div class="text-left">
+                        <p class="text-[10px] text-gold uppercase tracking-[0.3em]">Brahma Muhurta</p>
+                        <p class="text-2xl font-light tracking-widest">04:24 AM</p>
+                    </div>
                 </div>
-                <div class="glass p-10 rounded-3xl text-center border border-orange-500/10">
-                    <i data-lucide="flame" class="w-20 h-20 text-orange-400 mx-auto mb-4"></i>
-                    <h3 class="text-2xl font-bold mb-2">Light Diya</h3>
-                    <p class="text-gray-400">Light the flame of knowledge</p>
-                </div>
-                <div class="glass p-10 rounded-3xl text-center border border-orange-500/10">
-                    <i data-lucide="flower" class="w-20 h-20 text-orange-400 mx-auto mb-4"></i>
-                    <h3 class="text-2xl font-bold mb-2">Offer Flowers</h3>
-                    <p class="text-gray-400">Submit your daily prayers</p>
+
+                <div class="pt-10 flex justify-center gap-4">
+                    <button @click="toggleAudio()" class="text-xs text-gold/50 hover:text-gold uppercase tracking-[0.4em] transition-all flex items-center gap-2">
+                        <i :data-lucide="isMuted ? 'volume-x' : 'volume-2'" class="w-4 h-4"></i>
+                        <span x-text="isMuted ? 'Atmosphere Paused' : 'Atmosphere Active'"></span>
+                    </button>
                 </div>
             </div>
-        </section>
+        </header>
 
-        <section x-show="section === 'rituals'" x-transition class="text-center py-10 glass rounded-3xl p-8 border border-orange-500/20">
-            <i data-lucide="sparkles" class="w-16 h-16 text-orange-300 mx-auto mb-4"></i>
-            <h2 class="text-4xl text-orange-300 mb-4 font-bold">Live Aarti Hall</h2>
-            <p class="text-gray-300 max-w-2xl mx-auto mb-8 text-lg">Immerse yourself in the sacred vibrations of live morning and evening aartis.</p>
-            <div class="relative aspect-video bg-black/80 rounded-2xl border border-orange-500/30 overflow-hidden flex flex-col items-center justify-center">
-                <div class="absolute top-4 right-4 bg-red-600 px-3 py-1 rounded text-xs font-bold animate-pulse">LIVE SOON</div>
-                <i data-lucide="play" class="w-12 h-12 text-orange-500 mb-2"></i>
-                <p class="text-orange-200 font-bold uppercase tracking-widest">Evening Aarti: 6:30 PM IST</p>
-            </div>
-        </section>
-
-        <section x-show="section === 'poojari'" x-transition>
-            <h2 class="text-4xl text-orange-300 text-center mb-12">Virtual Poojari Booking</h2>
-            <div class="grid md:grid-cols-3 gap-6">
-                <template x-for="p in [
-                    {n:'Pandit Ravi', e:'15 yrs', l:'Hindi / Telugu'},
-                    {n:'Pandit Sharma', e:'20 yrs', l:'Sanskrit / Hindi'},
-                    {n:'Pandit Iyer', e:'18 yrs', l:'Tamil / Sanskrit'}
-                ]">
-                    <div class="glass p-8 rounded-2xl text-center border-t-4 border-orange-500 group hover:-translate-y-2 transition-transform">
-                        <div class="w-20 h-20 bg-orange-500/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <i data-lucide="user-round" class="w-10 h-10 text-orange-400"></i>
+        <section class="max-w-6xl mx-auto py-20 px-6">
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <div class="flex justify-center">
+                    <div class="relative w-64 h-64 md:w-80 md:h-80 compass-ring rounded-full flex items-center justify-center p-4">
+                        <div class="absolute inset-0 rounded-full border border-gold/5 animate-ping"></div>
+                        <div class="text-center">
+                            <p class="text-[10px] text-gold/40 uppercase tracking-widest mb-2">Ideal Pooja Direction</p>
+                            <p class="text-4xl font-ritual gold-gradient">NORTH-EAST</p>
+                            <p class="text-xs text-gray-500 mt-2 italic">(Ishanya)</p>
                         </div>
-                        <h3 class="text-2xl font-bold text-orange-100" x-text="p.n"></h3>
-                        <p class="text-orange-400 text-sm font-bold uppercase tracking-wider mt-1" x-text="p.e + ' Exp'"></p>
-                        <p class="text-gray-400 text-sm mb-6" x-text="p.l"></p>
-                        <a :href="'https://wa.me/917981225876?text=I want to book ' + p.n" class="block w-full py-3 bg-green-600 hover:bg-green-700 text-white rounded-xl font-bold transition-all shadow-lg">Book on WhatsApp</a>
+                        <div class="absolute top-4 text-gold/30 font-bold text-xs">N</div>
+                        <div class="absolute bottom-4 text-gold/30 font-bold text-xs">S</div>
+                        <div class="absolute right-4 text-gold/30 font-bold text-xs">E</div>
+                        <div class="absolute left-4 text-gold/30 font-bold text-xs">W</div>
                     </div>
+                </div>
+                <div class="space-y-6">
+                    <h2 class="text-4xl gold-gradient">Vastu Vidya</h2>
+                    <p class="text-gray-400 font-light leading-relaxed">
+                        To align your digital devotion with cosmic energy, the <span class="text-gold">North-East (Ishanya)</span> is the most auspicious direction. Place your device facing North or East during rituals to maximize spiritual vibrations.
+                    </p>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="premium-glass p-4 rounded-xl border-l-2 border-gold">
+                            <p class="text-gold text-xs uppercase tracking-widest">Face North</p>
+                            <p class="text-xs text-gray-500">For Prosperity</p>
+                        </div>
+                        <div class="premium-glass p-4 rounded-xl border-l-2 border-gold">
+                            <p class="text-gold text-xs uppercase tracking-widest">Face East</p>
+                            <p class="text-xs text-gray-500">For Enlightenment</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <nav class="sticky top-0 z-50 premium-glass border-b border-gold/10 px-4">
+            <div class="max-w-6xl mx-auto flex flex-wrap justify-center gap-8 py-6">
+                <template x-for="item in ['rituals', 'pathashala', 'audio', 'dakshina']">
+                    <button @click="section = item" 
+                            :class="section === item ? 'text-gold font-ritual underline decoration-gold underline-offset-8' : 'text-gray-500'"
+                            class="uppercase text-[10px] font-bold tracking-[0.4em] transition-all hover:text-gold" 
+                            x-text="item">
+                    </button>
                 </template>
             </div>
-        </section>
+        </nav>
 
-        <section x-show="section === 'pathashala'" x-transition>
-            <h2 class="text-4xl text-orange-300 text-center mb-12">Virtual Pathashala</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <template x-for="c in ['Veda Vyasa Mantras', 'Valmiki Ramayanam', 'Bhagavad Gita', 'Sloka Recitation']">
-                    <div class="glass h-48 flex flex-col items-center justify-center rounded-3xl border border-white/5 hover:border-orange-500/40 cursor-pointer group transition-all p-6 text-center">
-                        <i data-lucide="book-open" class="mb-4 text-orange-400 group-hover:scale-110 transition-transform"></i>
-                        <span class="text-lg font-bold text-orange-100" x-text="c"></span>
+        <main class="max-w-6xl mx-auto py-24 px-6 min-h-screen">
+            
+            <section x-show="section === 'rituals'" x-transition class="grid md:grid-cols-3 gap-12">
+                <div @click="ringBell()" class="premium-glass p-16 rounded-[40px] text-center cursor-pointer group transition-all hover:bg-gold/5">
+                    <div class="mb-8 inline-block group-hover:rotate-12 transition-transform duration-500">
+                        <i data-lucide="bell" class="w-20 h-20 text-gold/80"></i>
                     </div>
-                </template>
-            </div>
-        </section>
+                    <h3 class="text-2xl font-ritual gold-gradient mb-3">Sacred Bell</h3>
+                    <p class="text-gray-500 text-xs tracking-widest uppercase">Clear Negative Energy</p>
+                </div>
+                <div class="premium-glass p-16 rounded-[40px] text-center group">
+                    <i data-lucide="flame" class="w-20 h-20 text-gold/80 mx-auto mb-8 group-hover:scale-110 transition-transform duration-500"></i>
+                    <h3 class="text-2xl font-ritual gold-gradient mb-3">Divine Flame</h3>
+                    <p class="text-gray-500 text-xs tracking-widest uppercase">Invoke Inner Light</p>
+                </div>
+                <div class="premium-glass p-16 rounded-[40px] text-center group">
+                    <i data-lucide="flower" class="w-20 h-20 text-gold/80 mx-auto mb-8 group-hover:scale-110 transition-transform duration-500"></i>
+                    <h3 class="text-2xl font-ritual gold-gradient mb-3">Pushpam</h3>
+                    <p class="text-gray-500 text-xs tracking-widest uppercase">Surrender & Grace</p>
+                </div>
+            </section>
 
-        <section x-show="section === 'audio'" x-transition class="space-y-6">
-            <h2 class="text-4xl text-orange-300 text-center mb-12 font-bold">Bhakti Audio Library</h2>
-            <div class="grid gap-4 max-w-3xl mx-auto">
-                <div class="glass p-6 rounded-2xl flex flex-wrap items-center justify-between gap-4">
-                    <div class="flex items-center gap-4">
-                        <div class="w-12 h-12 bg-orange-500/20 rounded-full flex items-center justify-center"><i data-lucide="music" class="text-orange-400"></i></div>
-                        <div>
-                            <p class="font-bold text-orange-100">Gayatri Mantra</p>
-                            <p class="text-xs text-gray-400 uppercase">Divine Protection</p>
-                        </div>
+            <section x-show="section === 'audio'" x-transition class="max-w-2xl mx-auto space-y-8">
+                <h2 class="text-3xl font-ritual text-center gold-gradient mb-12 text-center">Bhakti Dhwani</h2>
+                <div class="premium-glass p-8 rounded-3xl flex items-center gap-8">
+                    <div class="w-12 h-12 rounded-full border border-gold/20 flex items-center justify-center pulse">
+                        <i data-lucide="music" class="text-gold w-5 h-5"></i>
                     </div>
-                    <audio controls src="https://www.hindu-blog.com/GayatriMantra.mp3" class="h-10 opacity-80"></audio>
-                </div>
-                <div class="glass p-6 rounded-2xl flex flex-wrap items-center justify-between gap-4">
-                    <div class="flex items-center gap-4">
-                        <div class="w-12 h-12 bg-orange-500/20 rounded-full flex items-center justify-center"><i data-lucide="music" class="text-orange-400"></i></div>
-                        <div>
-                            <p class="font-bold text-orange-100">Hanuman Chalisa</p>
-                            <p class="text-xs text-gray-400 uppercase">Power & Courage</p>
-                        </div>
+                    <div class="flex-1">
+                        <p class="text-gold text-xs tracking-[0.2em] mb-1">AUTHENTIC CHANT</p>
+                        <p class="text-xl font-light">Gayatri Mantra</p>
+                        <audio controls class="w-full h-8 mt-4 opacity-30 invert" src="https://ia801601.us.archive.org/15/items/GayatriMantra_201712/Gayatri%20Mantra.mp3"></audio>
                     </div>
-                    <audio controls src="https://ia800201.us.archive.org/21/items/HanumanChalisa_201611/Hanuman%20Chalisa.mp3" class="h-10 opacity-80"></audio>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <section x-show="section === 'calendar'" x-transition>
-            <h2 class="text-4xl text-orange-300 text-center mb-8">Panchang & Festivals</h2>
-            <div class="glass rounded-3xl overflow-hidden shadow-2xl border border-orange-500/10">
-                <iframe src="https://www.drikpanchang.com/calendars/hindu/hindu-calendar.html" class="w-full h-[600px] border-none"></iframe>
-            </div>
-        </section>
-
-        <section x-show="section === 'donate'" x-transition class="text-center max-w-xl mx-auto">
-            <h2 class="text-4xl text-orange-300 mb-8 font-bold">Offer Dakshina</h2>
-            <div class="glass p-10 rounded-3xl border-2 border-green-500/20 shadow-[0_0_50px_rgba(34,197,94,0.1)]">
-                <div class="bg-white p-3 rounded-2xl inline-block mb-6 shadow-2xl">
-                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=upi://pay?pa=7981225876-3@ybl&pn=VirtualPoojaGhar&cu=INR" alt="UPI QR Code">
+            <section x-show="section === 'dakshina'" x-transition class="text-center">
+                <div class="max-w-sm mx-auto">
+                    <p class="text-gold text-xs tracking-[0.5em] mb-10">THE ACT OF GIVING</p>
+                    <div class="premium-glass p-1 rounded-[2rem] shadow-[0_0_100px_rgba(212,175,55,0.1)]">
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=upi://pay?pa=7981225876-3@ybl&pn=PoojaGhar" class="w-full rounded-[1.8rem] opacity-90 grayscale hover:grayscale-0 transition-all duration-1000">
+                    </div>
+                    <a href="upi://pay?pa=7981225876-3@ybl&pn=PoojaGhar&am=501" class="inline-block mt-12 text-gold border-b border-gold/30 pb-2 text-xl font-light tracking-widest hover:border-gold transition-all">
+                        Offer ₹501 Dakshina
+                    </a>
                 </div>
-                <p class="text-gray-300 mb-8 px-4 text-sm leading-relaxed">Your generous dakshina helps us maintain the digital temple and support our priests and community programs.</p>
-                <div class="space-y-4">
-                    <a href="upi://pay?pa=7981225876-3@ybl&pn=VirtualPoojaGhar&am=101&cu=INR" class="block bg-green-600 py-4 rounded-2xl font-bold text-xl hover:bg-green-500 transition-all transform hover:scale-[1.02]">Quick Pay ₹101</a>
-                    <a href="https://wa.me/917981225876?text=Namaste, I have offered Dakshina." class="block py-2 text-green-400 font-semibold hover:text-green-300 underline transition-colors">Notify Temple Office</a>
-                </div>
-            </div>
-        </section>
+            </section>
 
-    </main>
+        </main>
 
-    <footer class="p-16 text-center glass mt-20 border-t border-orange-500/10">
-        <div class="text-4xl mb-6">🕉️</div>
-        <p class="text-orange-100 font-bold text-lg mb-2">Virtual Pooja Ghar</p>
-        <p class="text-gray-500 text-sm max-w-md mx-auto">Providing a sacred space for your spiritual journey, wherever you may be in the world.</p>
-        <div class="mt-8 flex justify-center gap-6 text-orange-500/40 italic text-xs uppercase tracking-[0.3em]">
-            <span>Peace</span> • <span>Devotion</span> • <span>Tradition</span>
-        </div>
-    </footer>
+        <footer class="py-24 text-center border-t border-gold/5">
+            <div class="glow-line mb-10"></div>
+            <p class="text-[10px] text-gold/30 tracking-[1em] uppercase">Pooja Ghar • Sanctum of Soul</p>
+            <p class="text-gray-700 text-[10px] mt-4 tracking-widest uppercase">Est. 2026 • Eternal Traditions</p>
+        </footer>
+    </div>
 
     <script>
-        // Initialize Lucide icons
-        lucide.createIcons();
-        
-        // Re-run icon initialization when Alpine.js toggles sections
-        window.addEventListener('alpine:initialized', () => {
-            Alpine.effect(() => {
-                const s = Alpine.store('section');
-                setTimeout(() => lucide.createIcons(), 50);
-            });
-        });
+        function sanctumHandler() {
+            return {
+                entered: false,
+                section: 'rituals',
+                isMuted: false,
+                currentTime: '',
+                enterSanctum() {
+                    this.entered = true;
+                    setTimeout(() => {
+                        const chant = document.getElementById('ambientChant');
+                        chant.volume = 0.3;
+                        chant.play().catch(e => console.log("User interaction required"));
+                        lucide.createIcons();
+                    }, 100);
+                },
+                updateTime() {
+                    setInterval(() => {
+                        const now = new Date();
+                        this.currentTime = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+                    }, 1000);
+                },
+                toggleAudio() {
+                    const chant = document.getElementById('ambientChant');
+                    this.isMuted = !this.isMuted;
+                    chant.muted = this.isMuted;
+                },
+                ringBell() {
+                    const bell = document.getElementById('bellSnd');
+                    bell.currentTime = 0;
+                    bell.play();
+                }
+            }
+        }
     </script>
 </body>
 </html>
